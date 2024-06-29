@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Container = styled.div`
   width: 100%;
