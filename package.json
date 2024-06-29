@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@vercel/speed-insights": "^1.0.12",
     "express-mysql-session": "^3.0.2",
     "express-session": "^1.18.0",
     "mysql2": "^3.10.1"

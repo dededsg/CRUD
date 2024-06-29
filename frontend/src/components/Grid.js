@@ -70,13 +70,11 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
             <Thead>
                 <Tr>
                     <Th style={thStyle}>Nome</Th>
+                    <Th style={thStyle}>Sobrenome</Th>
+                    <Th style={thStyle}>Cpf</Th>
                     <Th style={thStyle}>Email</Th>
-                    <Th style={thStyle}>Senha</Th>
                     <Th style={thStyle}>Telefone</Th>
-                    <Th style={thStyle}>Empresa</Th>
-                    <Th style={thStyle}>Tipo de Uso</Th>
-                    <Th style={thStyle}>Veículos</Th>
-                    <Th style={thStyle}>Conheceu por</Th>
+                    <Th style={thStyle}>Senha</Th>
                     <Th></Th>
                     <Th></Th>
                 </Tr>
@@ -85,13 +83,11 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
                 {users.map((item) => (
                     <Tr key={item.id}>
                         <Td>{item.nome}</Td>
+                        <Td>{item.sobrenome}</Td>
+                        <Td>{item.cpf}</Td>
                         <Td>{item.email}</Td>
-                        <Td>{item.senha}</Td>
                         <Td>{item.telefone}</Td>
-                        <Td>{item.empresa}</Td>
-                        <Td>{item.uso}</Td>
-                        <Td>{item.veiculos}</Td>
-                        <Td>{item.conheci}</Td>
+                        <Td>{item.senha}</Td>
                         <Td align="center">
                             <FaEdit onClick={() => handleEdit(item)} />
                         </Td>

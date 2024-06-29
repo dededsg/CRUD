@@ -1,6 +1,6 @@
 import { db } from '../db.js';
 
-export const getUsers = (_, res) => {
+export const getUsers = (req, res) => {
     const q = "SELECT * FROM usuarios";
 
     db.query(q, (err, data) => {
@@ -10,45 +10,55 @@ export const getUsers = (_, res) => {
     });
 };
 
-export const addUser = (req, res) => {
-    const q = 
-    "INSERT INTO usuarios(`nome`, `email`, `senha`, `telefone`, `empresa`, `uso`, `veiculos`, `conheci`) VALUES(?)";
+export const addUser = async (req, res) => {
+
+    const q = "INSERT INTO usuarios(`nome`, `sobrenome`, `cpf`, `email`, `telefone`, `senha`) VALUES(?)";
 
     const values = [
         req.body.nome,
+        req.body.sobrenome,
+        req.body.cpf,
         req.body.email,
-        req.body.senha,
         req.body.telefone,
-        req.body.empresa,
-        req.body.uso,
-        req.body.veiculos,
-        req.body.conheci,
+        req.body.senha,
     ];
+    const query = 'SELECT * FROM usuarios WHERE `email` = ? AND `cpf` = ?';
+    const valor = [req.body.email, req.body.cpf];
+    try{
+    const [teste] = await db.promise().query(query, valor);
+          if (teste.length > 0) {
+            console.log("foi não");
+            return res.status(200).json({message: "Usuário já existente.", error: false});
 
-    db.query(q, [values], (err) => {
-        if (err) return res.json(err);
+          } else {
+            db.query(q, [values], (err) => {
+                if (err) return res.json(err);
+                    console.log("foi");
+                    return res.status(200).json({message: "Usuário criado com sucesso.", error: true});
 
-        return res.status(200).json("Usuário criado com sucesso.")
-    });
-};
+                })
+          }
+        }catch (err) {
+            return res.status(500).json("ERROR");
+        }
+        };
 
 export const updateUser = (req, res) => {
-    console.log("cgegou");
-    const q = "UPDATE usuarios SET `nome` = ?, `email` = ?, `senha` = ?, `telefone` = ?, `empresa` = ?, `veiculos` = ? WHERE `id` = ?";
+    const q = "UPDATE usuarios SET `nome` = ?, `sobrenome` = ?, `cpf` = ?, `email` = ?, `telefone` = ?, `senha` = ? WHERE `id` = ?";
     
     const values = [
         req.body.nome,
+        req.body.sobrenome,
+        req.body.cpf,
         req.body.email,
-        req.body.senha,
         req.body.telefone,
-        req.body.empresa,
-        req.body.veiculos
+        req.body.senha
     ];
 
     db.query(q, [...values, req.params.id], (err) => {
-        if (err) return res.json(err);
+        if (err) return res.json(err).json("Usuario não atualizado.");
 
-        return res.status(200).json("Usuario atualizado com sucesso.")
+        return res.status(200).json("Usuario atualizado com sucesso.");
     });
 };
 
@@ -104,6 +114,17 @@ export const fetchSession = (req, res) => {
     } else {
         res.json({ message: "Nenhum usuário logado"});
     }
+};
+
+export const logoutSession = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ message: "Erro ao fazer logout" });
+        }
+        console.log("ClearCookie");
+        res.clearCookie('session_key'); // Limpa o cookie da sessão
+        res.json({ message: "Logout bem-sucedido" });
+    });
 };
 
 

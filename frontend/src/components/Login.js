@@ -91,11 +91,11 @@ const Login = ({ setUser }) => {
 
             <InputArea>
                 <Label>E-mail</Label>
-                <Input name = "email" type="email"/>
+                <Input name = "email" type="email" placeholder="nome@gmail.com"/>
             </InputArea>        
             <InputArea>
                 <Label>Senha</Label>
-                <Input name = "senha" type="password" />
+                <Input name = "senha" type="password" placeholder="********"/>
             </InputArea>
 
             <Button type="submit">LOGIN</Button>

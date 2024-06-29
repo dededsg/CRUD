@@ -50,13 +50,11 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
             console.log(onEdit);
             
             user.nome.value = onEdit.nome;
+            user.sobrenome.value = onEdit.sobrenome;
+            user.cpf.value = onEdit.cpf;
             user.email.value = onEdit.email;
-            user.senha.value = onEdit.senha;
             user.telefone.value = onEdit.telefone;
-            user.empresa.value = onEdit.empresa;
-            user.uso.value = onEdit.uso;
-            user.veiculos.value = onEdit.veiculos;
-            user.conheci.value = onEdit.conheci;
+            user.senha.value = onEdit.senha;
             console.log(user.nome);
         }
     }, [onEdit]);
@@ -68,29 +66,26 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
 
         if ( //verifica se todos tem infos 
             !user.nome.value ||
+            !user.sobrenome.value ||
+            !user.cpf.value ||
             !user.email.value ||
-            !user.senha.value ||
             !user.telefone.value ||
-            !user.empresa.value ||
-            !user.uso.value ||
-            !user.veiculos.value ||
-            !user.conheci.value
+            !user.senha.value
         ) {
             console.log("Preencha todos os campos")
             return toast.warn("Preencha todos os campos")
-            
         }
 
         if (onEdit){
             await axios
                 .put("http://localhost:8800/user/" + onEdit.id, {
                     nome: user.nome.value,
+                    sobrenome: user.sobrenome.value,
+                    cpf: user.cpf.value,
                     email: user.email.value,
-                    senha: user.senha.value,
                     telefone: user.telefone.value,
-                    empresa: user.empresa.value,
-                    veiculos: user.veiculos.value,
-                    conheci: user.conheci.value,
+                    senha: user.senha.value,
+
                 },{ witchCredentials: true})
                 .then(({ data }) => toast.success(data))
                 .catch(({ data }) => toast.error(data));
@@ -98,26 +93,22 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
             await axios
                 .post("http://localhost:8800/user/cadastro", {
                     nome: user.nome.value,
+                    sobrenome: user.sobrenome.value,
+                    cpf: user.cpf.value,
                     email: user.email.value,
-                    senha: user.senha.value,
                     telefone: user.telefone.value,
-                    empresa: user.empresa.value,
-                    uso: user.uso.value,
-                    veiculos: user.veiculos.value,
-                    conheci: user.conheci.value,
+                    senha: user.senha.value,
+
                 }, { witchCredentials: true})
-                .then(({ data }) => toast.success(data))
+                .then(({ data }) => {if(data.error == true){toast.success(data.message) }else{toast.error(data.message)}})
                 .catch(({ data }) => toast.error(data));
         }
-
         user.nome.value = ""; 
+        user.sobrenome.value = "";
+        user.cpf.value = "";
         user.email.value = ""; 
-        user.senha.value = ""; 
         user.telefone.value = ""; 
-        user.empresa.value = ""; 
-        user.uso.value = ""; 
-        user.veiculos.value = ""; 
-        user.conheci.value = "";
+        user.senha.value = ""; 
 
         setOnEdit(null);
         getUsers(); // atualiza o grid
@@ -127,37 +118,28 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
         <FormContainer ref={ref} onSubmit={handleSubmit}>   
             <InputArea>
                 <Label>Nome</Label>
-                <Input name = "nome" />
+                <Input name = "nome" placeholder="nome" />
+            </InputArea>
+            <InputArea>
+                <Label>Sobrenome</Label>
+                <Input name = "sobrenome" placeholder="sobrenome"/>
+            </InputArea>
+            <InputArea>
+                <Label>Cpf</Label>
+                <Input name = "cpf" placeholder="000.000.000-00" />
             </InputArea>
             <InputArea>
                 <Label>E-mail</Label>
-                <Input name = "email" type="email"/>
-            </InputArea>
-            <InputArea>
-                <Label>Senha</Label>
-                <Input name = "senha" type="password"/>
+                <Input name = "email" type="email" placeholder="nome@gmail.com"/>
             </InputArea>
             <InputArea>
                 <Label>Telefone</Label>
-                <Input name = "telefone" />
+                <Input name = "telefone" placeholder="(48)99123-1234" />
             </InputArea>
             <InputArea>
-                <Label>Empresa</Label>
-                <Input name = "empresa" />
+                <Label>Senha</Label>
+                <Input name = "senha" type="password" placeholder="********"/>
             </InputArea>
-            <InputArea>
-                <Label>Tipo de Uso</Label>
-                <Input name = "uso" />
-            </InputArea>
-            <InputArea>
-                <Label>Veículos</Label>
-                <Input name = "veiculos" />
-            </InputArea>
-            <InputArea>
-                <Label>Conheceu por</Label>
-                <Input name = "conheci" />
-            </InputArea>
-
             <Button type="submit">CADASTRAR</Button>
 
         </FormContainer>
