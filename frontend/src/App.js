@@ -40,7 +40,7 @@ function App() {
 
   const getUsers = async () => {
     try{
-      const res = await axios.get("http://localhost:8800/user", { withCredentials:true });
+      const res = await axios.get("https://server-rho-rouge.vercel.app/user", { withCredentials:true });
       setUsers(res.data.sort((a,b) => (a.nome > b.nome ? 1 : -1)));
     } catch (error) {
       console.log("Deu erro meu xapa")
@@ -50,7 +50,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-        const response = await axios.get("http://localhost:8800/user/logout", { withCredentials:true });
+        const response = await axios.get("https://server-rho-rouge.vercel.app/user/logout", { withCredentials:true });
         setUser(null); // Remove o usuário do estado após logout
         console.log(response.data.message); // "Logout bem-sucedido"
     } catch (error) {

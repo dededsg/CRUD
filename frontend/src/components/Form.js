@@ -78,7 +78,7 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
 
         if (onEdit){
             await axios
-                .put("http://localhost:8800/user/" + onEdit.id, {
+                .put("https://server-rho-rouge.vercel.app/user/" + onEdit.id, {
                     nome: user.nome.value,
                     sobrenome: user.sobrenome.value,
                     cpf: user.cpf.value,
@@ -91,7 +91,7 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
                 .catch(({ data }) => toast.error(data));
         } else {
             await axios
-                .post("http://localhost:8800/user/cadastro", {
+                .post("https://server-rho-rouge.vercel.app/user/cadastro", {
                     nome: user.nome.value,
                     sobrenome: user.sobrenome.value,
                     cpf: user.cpf.value,

@@ -47,7 +47,7 @@ const Login = ({ setUser }) => {
     useEffect(() => {
         const fetchSession = async () => {
             try {
-                const response = await axios.get('http://localhost:8800/user/check-session', { withCredentials: true });
+                const response = await axios.get('https://server-rho-rouge.vercel.app/user/check-session', { withCredentials: true });
                 if (response.data.user){
                     setUser(response.data.user);
                 } else {
@@ -72,7 +72,7 @@ const Login = ({ setUser }) => {
             return toast.warn("Preencha todos os campos")
         } else {
             try {
-                const response = await axios.post("http://localhost:8800/user/login", {
+                const response = await axios.post("https://server-rho-rouge.vercel.app/user/login", {
                     email: user.email.value,
                     senha: user.senha.value,
                 },{ withCredentials: true});

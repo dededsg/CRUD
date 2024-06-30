@@ -51,7 +51,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
     const handleDelete = async(id) => { 
         console.log("chegou delete");
         await axios
-            .delete("http://localhost:8800/user/" + id)
+            .delete("https://server-rho-rouge.vercel.app/user/" + id)
             .then(({ data }) => {                   //validação
                 const newArray = users.filter((user) => user.id !== id);
                 console.log("chegou delete");
