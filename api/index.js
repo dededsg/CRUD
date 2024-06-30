@@ -16,7 +16,10 @@ const app = express();
 const PORT = "8800"; //define a porta do localhost
 
 
-app.use(cors());
+app.use(cors({
+  origin: "https://client-ten-zeta-20.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 app.use(session({
   key: 'session_key',
