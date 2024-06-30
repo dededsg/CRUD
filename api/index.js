@@ -2,27 +2,15 @@ import express from "express";
 import userRoutes from "./routes/users.js";
 import cors from "cors";
 import session from "express-session";
-import mysql from "mysql";
-import MySQLStoreFactory from "express-mysql-session";
+import { db } from "./db.js";
 
-const MySQLStore = MySQLStoreFactory(session);
-
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Dededsg@05062005",
-    database: "crudpontotrack",
-});
-
-connection.connect(err => {
+db.connect(err => {
   if(err) {
     console.error("Error connecting to", err.stack);
     return;
   }
-  console.log("Deu certo a conexão", connection.threadId);
+  console.log("Deu certo a conexão", db.threadId);
 })
-
-const sessionStore = new MySQLStore({connection});
 
 const app = express();
 const PORT = "8800"; //define a porta do localhost
