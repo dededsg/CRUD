@@ -22,7 +22,7 @@ export const addUser = async (req, res) => {
         req.body.telefone,
         req.body.senha,
     ];
-    const query = 'SELECT * FROM usuarios WHERE `email` = ? AND `cpf` = ?';
+    const query = 'SELECT * FROM usuarios WHERE `email` = ? OR `cpf` = ?';
     const valor = [req.body.email, req.body.cpf];
     try{
     const [teste] = await db.promise().query(query, valor);
