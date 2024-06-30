@@ -16,10 +16,7 @@ const app = express();
 const PORT = "8800"; //define a porta do localhost
 
 
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(session({
   key: 'session_key',
