@@ -5,15 +5,15 @@ import { toast } from "react-toastify";
 
 const FormContainer = styled.form`
     display: flex;
-    align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    background-color: #fff;
     padding: 20px;
-    box-shadow: 0px 0px 5px #ccc;
-    border-radius: 5px;
-    flex-direction: column;
     width: 400px;
+    height: 550px;
+    align-content: center;
+    border: 1px solid #dbdbdb;
+    border-radius:20px ;
+    margin:10px ;
 `;
 
 const InputArea = styled.div`
@@ -34,12 +34,20 @@ const Label = styled.label``;
 const Button = styled.button`
     padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
     border: none;
     background-color: #2c73d2;
     color: white;
     height: 42px;
+    width: 400px;
+    margin-top: 20px;
+    box-shadow: 3px 3px 5px #ccc;
 `;
+const Title = styled.h2`
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+`; 
 
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
     const ref = useRef();
@@ -116,31 +124,26 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
 
     return (
         <FormContainer ref={ref} onSubmit={handleSubmit}>   
+        <Title>CADASTRO</Title>
             <InputArea>
-                <Label>Nome</Label>
-                <Input name = "nome" placeholder="nome" />
+             </InputArea>
+               <Input name = "nome" placeholder="Nome" />
+            <InputArea>
+                <Input name = "sobrenome" placeholder="Sobrenome"/>
             </InputArea>
             <InputArea>
-                <Label>Sobrenome</Label>
-                <Input name = "sobrenome" placeholder="sobrenome"/>
+                <Input name = "cpf" placeholder="CPF" />
             </InputArea>
             <InputArea>
-                <Label>Cpf</Label>
-                <Input name = "cpf" placeholder="000.000.000-00" />
+                <Input name = "email" type="email" placeholder="Email"/>
             </InputArea>
             <InputArea>
-                <Label>E-mail</Label>
-                <Input name = "email" type="email" placeholder="nome@gmail.com"/>
+                <Input name = "telefone" placeholder="Telefone" />
             </InputArea>
             <InputArea>
-                <Label>Telefone</Label>
-                <Input name = "telefone" placeholder="(48)99123-1234" />
+                <Input name = "senha" type="password" placeholder="Senha"/>
             </InputArea>
-            <InputArea>
-                <Label>Senha</Label>
-                <Input name = "senha" type="password" placeholder="********"/>
-            </InputArea>
-            <Button type="submit">CADASTRAR</Button>
+            <Button type="submit">Registrar</Button>
 
         </FormContainer>
     );

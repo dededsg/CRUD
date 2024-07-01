@@ -5,15 +5,16 @@ import { toast } from "react-toastify";
 
 const LoginContainer = styled.form`
     display: flex;
-    align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    background-color: #fff;
     padding: 20px;
-    box-shadow: 0px 0px 5px #ccc;
-    border-radius: 5px;
-    flex-direction: column;
     width: 400px;
+    height: 550px;
+    align-content: center;
+    border: 1px solid #dbdbdb;
+    border-radius:20px ;
+    margin:10px ;
+    
 `;
 
 const InputArea = styled.div`
@@ -27,6 +28,7 @@ const Input = styled.input`
     border: 1px solid #bbb;
     border-radius: 5px;
     height: 40px;
+
 `;
 
 const Label = styled.label``;
@@ -34,12 +36,20 @@ const Label = styled.label``;
 const Button = styled.button`
     padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
     border: none;
     background-color: #2c73d2;
     color: white;
     height: 42px;
+    width: 400px;
+    margin-top: 20px;
+    box-shadow: 3px 3px 5px #ccc;
 `;
+const Title = styled.h2`
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+`; 
 
 const Login = ({ setUser }) => {
     const ref = useRef();
@@ -88,17 +98,16 @@ const Login = ({ setUser }) => {
     }
     return (
         <LoginContainer ref={ref} onSubmit={handleSubmit}>   
+        <Title>LOGIN</Title>
 
             <InputArea>
-                <Label>E-mail</Label>
-                <Input name = "email" type="email" placeholder="nome@gmail.com"/>
+                <Input name = "email" type="email" placeholder="Email"/>
             </InputArea>        
             <InputArea>
-                <Label>Senha</Label>
-                <Input name = "senha" type="password" placeholder="********"/>
+                <Input name = "senha" type="password" placeholder="Senha"/>
             </InputArea>
 
-            <Button type="submit">LOGIN</Button>
+            <Button type="submit">Login</Button>
 
         </LoginContainer>
     );

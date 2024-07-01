@@ -10,17 +10,11 @@ import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 800px;
   margin-top 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
 `;
-
-const Title = styled.h2`
-  margin-top: 20px;
-`; 
 
 const Button = styled.button`
     padding: 10px;
@@ -30,6 +24,13 @@ const Button = styled.button`
     background-color: #2c73d2;
     color: white;
     height: 42px;
+`;
+const Box = styled.div`
+    display: flex;
+    border-radius: 15px;
+    background-color: #fff;
+    flex-wrap: wrap;
+    justify-content: center;
 `;
 
 function App() {
@@ -69,15 +70,15 @@ function App() {
      { user ? (
       <Container>
         <Button onClick={handleLogout}>Logout</Button>
-        <Title>CADASTRO</Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers}/>
         <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit}/>
       </Container>
       ) : (
-        <Container>
-        <Title>LOGIN</Title>
-        <Login setUser={setUser}/>
-        <Form setOnEdit={setOnEdit} getUsers={getUsers}/>
+      <Container>
+        <Box>
+          <Login setUser={setUser}/>
+          <Form setOnEdit={setOnEdit} getUsers={getUsers}/>
+        </Box>
       </Container>
       )}
       <ToastContainer 
