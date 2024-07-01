@@ -6,12 +6,11 @@ import { toast } from "react-toastify";
 
 const Table = styled.table`
     width: 100%;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     padding: 20px;
-    box-shadow: 0px 0px 5px #ccc;
+    box-shadow: rgb(204, 204, 204) 0px 0px 5px;
     border-radius: 5px;
-    max-width: 800px;
-    margin: 20px 0px;
+    margin: 20px 10px;
 `;
 
 export const Thead = styled.thead``;
