@@ -8,12 +8,11 @@ const FormContainer = styled.form`
     gap: 10px;
     flex-wrap: wrap;
     padding: 20px;
-    width: 400px;
-    height: 550px;
     align-content: center;
     border: 1px solid #dbdbdb;
-    border-radius:20px ;
-    margin:10px ;
+    border-radius: 20px;
+    margin: 10px;
+    flex-direction: column;
 `;
 
 const InputArea = styled.div`
@@ -48,6 +47,19 @@ const Title = styled.h2`
     margin-left: auto;
     margin-right: auto;
 `; 
+const TitleArea = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+`;
+const ButtonArea = styled.div`
+`;
+const InputContainer = styled.div`
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+`;
 
 const Form = ({ getUsers, onEdit, setOnEdit }) => {
     const ref = useRef();
@@ -123,28 +135,33 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
     };
 
     return (
-        <FormContainer ref={ref} onSubmit={handleSubmit}>   
-        <Title>CADASTRO</Title>
-            <InputArea>
-             </InputArea>
-               <Input name = "nome" placeholder="Nome" />
-            <InputArea>
-                <Input name = "sobrenome" placeholder="Sobrenome"/>
-            </InputArea>
-            <InputArea>
-                <Input name = "cpf" placeholder="CPF" />
-            </InputArea>
-            <InputArea>
-                <Input name = "email" type="email" placeholder="Email"/>
-            </InputArea>
-            <InputArea>
-                <Input name = "telefone" placeholder="Telefone" />
-            </InputArea>
-            <InputArea>
-                <Input name = "senha" type="password" placeholder="Senha"/>
-            </InputArea>
-            <Button type="submit">Registrar</Button>
-
+        <FormContainer ref={ref} onSubmit={handleSubmit}> 
+            <TitleArea>  
+                <Title>REGISTRO</Title>
+            </TitleArea>
+            <InputContainer>
+                <InputArea>
+                    <Input name = "nome" placeholder="Nome" />
+                </InputArea>
+                <InputArea>
+                    <Input name = "sobrenome" placeholder="Sobrenome"/>
+                </InputArea>
+                <InputArea>
+                    <Input name = "cpf" placeholder="CPF" />
+                </InputArea>
+                <InputArea>
+                    <Input name = "email" type="email" placeholder="Email"/>
+                </InputArea>
+                <InputArea>
+                    <Input name = "telefone" placeholder="Telefone" />
+                </InputArea>
+                <InputArea>
+                    <Input name = "senha" type="password" placeholder="Senha"/>
+                </InputArea>
+            </InputContainer>
+            <ButtonArea>
+                <Button type="submit">Registrar</Button>
+            </ButtonArea>
         </FormContainer>
     );
 };

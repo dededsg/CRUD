@@ -107,7 +107,7 @@ const Login = ({ setUser }) => {
                 <Input name = "senha" type="password" placeholder="Senha"/>
             </InputArea>
 
-            <Button type="submit">Login</Button>
+            <Button type="submit">Entrar</Button>
 
         </LoginContainer>
     );

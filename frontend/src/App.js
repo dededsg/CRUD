@@ -16,14 +16,26 @@ const Container = styled.div`
   gap: 10px;
 `;
 
+const Menu = styled.div`
+    display: flex;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+`;
+const Group = styled.div``;
+
+
 const Button = styled.button`
     padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
     border: none;
-    background-color: #2c73d2;
+    background-color: red;
     color: white;
     height: 42px;
+    margin-left: auto;
+    width: 80px;
 `;
 const Box = styled.div`
     display: flex;
@@ -31,6 +43,12 @@ const Box = styled.div`
     background-color: #fff;
     flex-wrap: wrap;
     justify-content: center;
+`;
+
+const Title = styled.text`
+    margin: auto 0px auto 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
 `;
 
 function App() {
@@ -68,11 +86,18 @@ function App() {
   return (
     <>
      { user ? (
+      <Group>
+      <Menu>
+        <Title>CRUD</Title>
+        <Button onClick={handleLogout}>SAIR</Button>
+      </Menu>
       <Container>
-        <Button onClick={handleLogout}>Logout</Button>
+        <Box>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers}/>
         <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit}/>
+      </Box>
       </Container>
+      </Group>
       ) : (
       <Container>
         <Box>

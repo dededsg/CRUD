@@ -71,7 +71,7 @@ const Grid = ({ users, setUsers, setOnEdit }) => {
                 <Tr>
                     <Th style={thStyle}>Nome</Th>
                     <Th style={thStyle}>Sobrenome</Th>
-                    <Th style={thStyle}>Cpf</Th>
+                    <Th style={thStyle}>CPF</Th>
                     <Th style={thStyle}>Email</Th>
                     <Th style={thStyle}>Telefone</Th>
                     <Th style={thStyle}>Senha</Th>
